@@ -1,0 +1,16 @@
+[
+{
+  "modid": "jewtrickml",
+  "name": "jewtrick.ml",
+  "description": "jewtrick.ml but as a Forge mod",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "github.com/toiletgaming/jewtrick-forge",
+  "updateUrl": "",
+  "authorList": ["mrnv/ayywareseller"],
+  "credits": "ZimnyCat",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

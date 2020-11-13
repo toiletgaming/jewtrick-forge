@@ -1,0 +1,9 @@
+{
+	"required": true,
+	"compatibilityLevel": "JAVA_8",
+	"package": "fuck.you.jewtrickml.mixin.mixins",
+	"refmap": "mixins.jewtrickml.refmap.json",
+	"mixins": [
+		"MixinGuiMultiplayer"
+	]
+}
