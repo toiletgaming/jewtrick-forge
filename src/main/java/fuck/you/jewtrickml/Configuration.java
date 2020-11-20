@@ -12,6 +12,10 @@ public class Configuration
 		@Config.RangeInt( min = 1000, max = 3000 )
 		public int checkDelay = 1000;
 		
+		@Config.Name( "Connect delay (ms)" )
+		@Config.RangeInt( min = 0, max = 2000 )
+		public int connectDelay = 0;
+		
 		@Config.Name( "Print info" )
 		public boolean printInfo = true;
 		

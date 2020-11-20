@@ -42,6 +42,9 @@ public class Checker
 									if( Configuration.main.ping )
 										Main.INSTANCE.getUtils( ).ping2b2t( );
 									
+									if( Configuration.main.connectDelay > 0 )
+										Thread.sleep( Configuration.main.connectDelay );
+									
 									Main.INSTANCE.getUtils( ).connectTo2b2t( );
 								}
 							}
