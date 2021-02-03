@@ -36,7 +36,7 @@ public class Utils
 		{
 			StringBuffer buffer = new StringBuffer( );
 			
-			URL url = new URL( "https://server.jewtrick.xyz/jewtrickstatus.html" );
+			URL url = new URL( "http://server.jewtrick.xyz/jewtrickstatus.html" );
 			HttpURLConnection connection = ( HttpURLConnection )url.openConnection( );
 			connection.setRequestProperty( "User-Agent", USERAGENT );
 			BufferedReader in = new BufferedReader( new InputStreamReader( connection.getInputStream( ) ) );
@@ -63,7 +63,7 @@ public class Utils
 		{
 			StringBuffer buffer = new StringBuffer( );
 			
-			URL url = new URL( "https://server.jewtrick.xyz/jew_online.html" );
+			URL url = new URL( "http://server.jewtrick.xyz/jew_online.html" );
 			HttpURLConnection connection = ( HttpURLConnection )url.openConnection( );
 			connection.setRequestProperty( "User-Agent", USERAGENT );
 			BufferedReader in = new BufferedReader( new InputStreamReader( connection.getInputStream( ) ) );
