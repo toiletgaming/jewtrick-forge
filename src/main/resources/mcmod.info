@@ -1,8 +1,8 @@
 [
 {
   "modid": "jewtrickml",
-  "name": "jewtrick.ml",
-  "description": "jewtrick.ml but as a Forge mod",
+  "name": "jewtrick.xyz",
+  "description": "jewtrick.xyz but as a Forge mod",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "github.com/toiletgaming/jewtrick-forge",
