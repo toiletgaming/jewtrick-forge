@@ -2,7 +2,7 @@ buildscript {
     repositories {
         jcenter()
         maven { url = "https://files.minecraftforge.net/maven" }
-		maven { url = "http://repo.spongepowered.org/maven" }
+		maven { url = "https://repo.spongepowered.org/repository/maven-public/" }
 		maven { url = "https://plugins.gradle.org/m2/" }
     }
     dependencies {
@@ -17,7 +17,7 @@ apply plugin: 'com.github.johnrengelman.shadow'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
 
-version = "1.1.1"
+version = "1.1.2"
 group = "fuck.you.jewtrickml" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "jewtrickml"
 
@@ -41,7 +41,7 @@ minecraft {
 }
 
 repositories {
-	maven { url = "http://repo.spongepowered.org/maven/" }
+	maven { url = "https://repo.spongepowered.org/repository/maven-public/" }
 	maven { url = "https://oss.sonatype.org/content/groups/public/" }
 	mavenCentral()
 	jcenter()
