@@ -23,6 +23,8 @@ public class Utils
 	
 	public void connectTo2b2t( )
 	{
+		Main.INSTANCE.getLogger( ).info( "Connecting to 2b2t.org [online: " + Main.INSTANCE.getChecker( ).getLastOnline( ) + "]" );
+		
 		Minecraft.getMinecraft( ).addScheduledTask( ( ) ->
 		{
 			ServerData data = new ServerData( "", "2b2t.org:25565", false );

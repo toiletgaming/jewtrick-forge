@@ -14,13 +14,20 @@ public class Configuration
 		
 		@Config.Name( "Connect delay (ms)" )
 		@Config.RangeInt( min = 0, max = 2000 )
-		public int connectDelay = 0;
+		public int connectDelay = 600;
 		
 		@Config.Name( "Print info" )
 		public boolean printInfo = true;
 		
-		@Config.Name( "Ping 2b2t before AutoJoining" )
+		@Config.Name( "Ping 2b2t before joining" )
 		public boolean ping = false;
+		
+		@Config.Name( "Auto Reconnect" )
+		public boolean autoReconnect = false;
+		
+		@Config.Name( "Auto Reconnect delay" )
+		@Config.RangeInt( min = 200, max = 5000 )
+		public int autoReconnectDelay = 1500;
 	}
 	
 	@Config.Name( "Main" )

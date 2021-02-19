@@ -4,6 +4,7 @@
 	"package": "fuck.you.jewtrickml.mixin.mixins",
 	"refmap": "mixins.jewtrickml.refmap.json",
 	"mixins": [
-		"MixinGuiMultiplayer"
+		"MixinGuiMultiplayer",
+		"MixinGuiDisconnected"
 	]
 }

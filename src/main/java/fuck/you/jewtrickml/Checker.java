@@ -3,10 +3,12 @@ package fuck.you.jewtrickml;
 public class Checker
 {
 	private boolean state = false;
+	private boolean autoreconnecting = false;
 	
 	private int checks = 0;
 	private int laststatus = 0;
 	private int lastonline = 0;
+	private long connecttime = 0;
 	
 	public void createThread( )
 	{
@@ -19,7 +21,7 @@ public class Checker
 				{
 					try
 					{
-						if( isEnabled( ) )
+						if( isEnabled( ) || autoreconnecting )
 						{
 							checks++;
 							
@@ -33,19 +35,23 @@ public class Checker
 								if( online != -1 )
 									lastonline = online;
 								
-								if( status == 2 )
+								if( !autoreconnecting )
 								{
-									Main.INSTANCE.getLogger( ).info( "Connecting to 2b2t.org [online: " + online + "]" );
-									
-									setEnabled( false );
-									
-									if( Configuration.main.ping )
-										Main.INSTANCE.getUtils( ).ping2b2t( );
-									
-									if( Configuration.main.connectDelay > 0 )
-										Thread.sleep( Configuration.main.connectDelay );
-									
-									Main.INSTANCE.getUtils( ).connectTo2b2t( );
+									if( status == 2 )
+									{
+										if( Configuration.main.autoReconnect )
+											autoreconnecting = true;
+										
+										setEnabled( false );
+
+										if( Configuration.main.ping )
+											Main.INSTANCE.getUtils( ).ping2b2t( );
+										
+										if( Configuration.main.connectDelay > 0 )
+											Thread.sleep( Configuration.main.connectDelay );
+										
+										Main.INSTANCE.getUtils( ).connectTo2b2t( );
+									}
 								}
 							}
 						}
@@ -70,6 +76,12 @@ public class Checker
 	{
 		this.checks = 0;
 		this.lastonline = 0;
+		
+		if( !Configuration.main.autoReconnect )
+		{
+			this.autoreconnecting = false;
+			this.connecttime = 0;
+		}
 	}
 	
 	public boolean isEnabled( )
@@ -98,9 +110,24 @@ public class Checker
 		return laststatus;
 	}
 	
+	public boolean isAutoReconnecting( )
+	{
+		return autoreconnecting;
+	}
+	
+	public long getReconnectTimeRemaining( )
+	{
+		return ( connecttime + Configuration.main.autoReconnectDelay ) - System.currentTimeMillis( );
+	}
+	
 	public void setEnabled( boolean state )
 	{
 		this.state = state;
 		reset( );
+	}
+	
+	public void setConnectTime( long connecttime )
+	{
+		this.connecttime = connecttime;
 	}
 }
