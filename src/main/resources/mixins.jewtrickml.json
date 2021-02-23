@@ -5,6 +5,7 @@
 	"refmap": "mixins.jewtrickml.refmap.json",
 	"mixins": [
 		"MixinGuiMultiplayer",
-		"MixinGuiDisconnected"
+		"MixinGuiDisconnected",
+		"MixinGuiConnecting"
 	]
 }

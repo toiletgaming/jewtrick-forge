@@ -84,6 +84,12 @@ public class Checker
 		}
 	}
 	
+	public void disableAutoReconnect( )
+	{
+		this.autoreconnecting = false;
+		this.connecttime = 0;
+	}
+	
 	public boolean isEnabled( )
 	{
 		return state;
