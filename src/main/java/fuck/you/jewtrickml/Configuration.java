@@ -28,6 +28,10 @@ public class Configuration
 		@Config.Name( "Auto Reconnect delay" )
 		@Config.RangeInt( min = 200, max = 5000 )
 		public int autoReconnectDelay = 1500;
+		
+		@Config.Name( "Check 2b2t restarts" )
+		@Config.Comment( "Only works if \"Print info\" is enabled" )
+		public boolean checkRestarts = false;
 	}
 	
 	@Config.Name( "Main" )

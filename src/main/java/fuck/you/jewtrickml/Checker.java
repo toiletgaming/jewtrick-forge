@@ -1,5 +1,8 @@
 package fuck.you.jewtrickml;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Checker
 {
 	private boolean state = false;
@@ -10,9 +13,18 @@ public class Checker
 	private int lastonline = 0;
 	private long connecttime = 0;
 	
+	private Map< String, String > restartmap = new HashMap< >( );
+	private String restartstate = null;
+	
 	public void createThread( )
 	{
-		Thread thread = new Thread( new Runnable( )
+		restartmap.put( "15", "15 minutes" );
+		restartmap.put( "10", "10 minutes" );
+		restartmap.put( "5", "5 minutes" );
+		restartmap.put( "2", "2 minutes" );
+		restartmap.put( "0.15", "15 seconds" );
+		
+		Thread checkthread = new Thread( new Runnable( )
 		{
 			@Override
 			public void run( )
@@ -66,10 +78,54 @@ public class Checker
 			}
 		} );
 		
-		thread.setName( "jewtrickml-thread" );
-		thread.start( );
+		Thread restartthread = new Thread( new Runnable( )
+		{
+			@Override
+			public void run( )
+			{
+				while( !Thread.currentThread( ).isInterrupted( ) )
+				{
+					try
+					{
+						if( Configuration.main.printInfo && Configuration.main.checkRestarts )
+						{
+							String restart = Main.INSTANCE.getUtils( ).getRestartStatus( );
+							if( restart != null )
+							{
+								if( restart.equals( "0" ) )
+									updateRestartState( null );
+								else if( restart.equals( "1" ) )
+									updateRestartState( "2b2t is restarting" );
+								else
+								{
+									String time = restartmap.get( restart );
+									if( time != null )
+										updateRestartState( "2b2t restarting in " + time );
+									else // wtf????
+										Main.INSTANCE.getLogger( ).error( "No entry for " + restart + "in restartmap" );
+								}
+								
+								Thread.sleep( 6000 );
+							}
+						}
+						
+						Thread.sleep( 1000 );
+					}
+					catch( Exception e )
+					{
+						
+					}
+				}
+			}
+		} );
 		
-		Main.INSTANCE.getLogger( ).info( "Started thread" );
+		checkthread.setName( "jewtrickxyz-check-thread" );
+		checkthread.start( );
+		
+		restartthread.setName( "jewtrickxyz-restartcheck-thread" );
+		restartthread.start( );
+		
+		Main.INSTANCE.getLogger( ).info( "Started threads" );
 	}
 	
 	public void reset( )
@@ -135,5 +191,18 @@ public class Checker
 	public void setConnectTime( long connecttime )
 	{
 		this.connecttime = connecttime;
+	}
+	
+	public void updateRestartState( String str )
+	{
+		if( this.restartstate.equals( str ) ) return;
+		
+		this.restartstate = str;
+		Main.INSTANCE.getUtils( ).printToChat( str );
+	}
+	
+	public String getRestartState( )
+	{
+		return restartstate;
 	}
 }

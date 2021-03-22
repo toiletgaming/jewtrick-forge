@@ -56,9 +56,21 @@ public class MixinGuiMultiplayer extends GuiScreen
 			String lastonline = String.format(
 					"Last online: %d", Main.INSTANCE.getChecker( ).getLastOnline( ) );
 			
-			this.drawString( this.fontRenderer, "[ jewtrick info ]", 2, this.height - 30, 0xCCCCCC );
-			this.drawString( this.fontRenderer, pings, 2, this.height - 20, 0xFFFFFF );
-			this.drawString( this.fontRenderer, lastonline, 2, this.height - 10, 0xFFFFFF );
+			boolean restartstate =
+					Configuration.main.checkRestarts && Main.INSTANCE.getChecker( ).getRestartState( ) != null;
+			
+			int height = this.height - 30;
+			if( restartstate )
+				height -= 10;
+			
+			this.drawString( this.fontRenderer, "[ jewtrick info ]", 2, height, 0xCCCCCC ); height += 10;
+			if( restartstate )
+			{
+				this.drawString( this.fontRenderer, Main.INSTANCE.getChecker( ).getRestartState( ), 2, height, 0xFFAA00 );
+				height += 10;
+			}
+			this.drawString( this.fontRenderer, pings, 2, height, 0xFFFFFF ); height += 10;
+			this.drawString( this.fontRenderer, lastonline, 2, height, 0xFFFFFF );
 		}
 	}
 	

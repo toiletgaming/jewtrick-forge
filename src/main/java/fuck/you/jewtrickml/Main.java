@@ -20,7 +20,7 @@ public class Main
 {
 	public static final String MODID = "jewtrickml";
 	public static final String NAME = "jewtrick.xyz";
-	public static final String VERSION = "1.2";
+	public static final String VERSION = "1.3-BETA";
 	
 	private static Logger logger = LogManager.getLogger( Main.NAME );
 	private static Utils utils = new Utils( );
