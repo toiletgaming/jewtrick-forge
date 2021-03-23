@@ -66,7 +66,7 @@ public class MixinGuiMultiplayer extends GuiScreen
 			this.drawString( this.fontRenderer, "[ jewtrick info ]", 2, height, 0xCCCCCC ); height += 10;
 			if( restartstate )
 			{
-				this.drawString( this.fontRenderer, Main.INSTANCE.getChecker( ).getRestartState( ), 2, height, 0xFFAA00 );
+				this.drawString( this.fontRenderer, Main.INSTANCE.getChecker( ).getRestartState( ), 2, height, 0xFFFF55 );
 				height += 10;
 			}
 			this.drawString( this.fontRenderer, pings, 2, height, 0xFFFFFF ); height += 10;
