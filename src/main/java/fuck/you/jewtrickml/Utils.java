@@ -11,7 +11,9 @@ import fuck.you.jewtrickml.mcping.MinecraftPing;
 import fuck.you.jewtrickml.mcping.MinecraftPingOptions;
 import fuck.you.jewtrickml.mcping.MinecraftPingReply;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.multiplayer.ServerData;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.util.text.TextComponentString;
 
 public class Utils
@@ -117,16 +119,26 @@ public class Utils
 			Minecraft.getMinecraft( ).ingameGUI.getChatGUI( ) == null )
 			return;
 		
-		try
+		Minecraft.getMinecraft( ).addScheduledTask( ( ) ->
 		{
-			Minecraft.getMinecraft( ).ingameGUI.getChatGUI( )
-				.printChatMessage( new TextComponentString(
-						ChatFormatting.GRAY + "[jewtrick] " + ChatFormatting.YELLOW + str ) );
-		}
-		catch( Exception e )
-		{
-			Main.INSTANCE.getLogger( ).info( str );
-		}
+			try
+			{
+				Minecraft.getMinecraft( ).ingameGUI.getChatGUI( )
+					.printChatMessage( new TextComponentString(
+							ChatFormatting.GRAY + "[jewtrick] " + ChatFormatting.YELLOW + str ) );
+				
+				if( Configuration.main.restartSound )
+				{
+					Minecraft.getMinecraft( ).getSoundHandler( ).playSound(
+							PositionedSoundRecord.getMasterRecord(
+									SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, 1.0F ) );
+				}
+			}
+			catch( Exception e )
+			{
+				
+			}
+		} );
 	}
 	
 	public void ping2b2t( )
@@ -138,10 +150,18 @@ public class Utils
 					.setHostname( "2b2t.org" )
 					.setPort( 25565 )
 					.setTimeout( 1500 ) );
+			
+			// why not
+			Main.INSTANCE.getLogger( ).info( "Pinged 2b2t.org, players online: " + ping.getPlayers( ).getOnline( ) );
 		}
 		catch( Exception e )
 		{
 			e.printStackTrace( );
 		}
+	}
+	
+	public void sleep( long ms ) throws InterruptedException
+	{
+		Thread.sleep( ms );
 	}
 }

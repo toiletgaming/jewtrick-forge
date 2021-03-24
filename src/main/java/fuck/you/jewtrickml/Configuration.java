@@ -20,18 +20,22 @@ public class Configuration
 		public boolean printInfo = true;
 		
 		@Config.Name( "Ping 2b2t before joining" )
-		public boolean ping = false;
+		public boolean ping = true;
 		
 		@Config.Name( "Auto Reconnect" )
 		public boolean autoReconnect = false;
 		
 		@Config.Name( "Auto Reconnect delay" )
 		@Config.RangeInt( min = 200, max = 5000 )
-		public int autoReconnectDelay = 1500;
+		public int autoReconnectDelay = 400;
 		
 		@Config.Name( "Check 2b2t restarts" )
 		@Config.Comment( "Only works if \"Print info\" is enabled" )
 		public boolean checkRestarts = false;
+		
+		@Config.Name( "Play sound when 2b2t restarts" )
+		@Config.Comment( "Obviously works only if \"Check 2b2t restarts\" is enabled" )
+		public boolean restartSound = true;
 	}
 	
 	@Config.Name( "Main" )

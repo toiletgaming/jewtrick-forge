@@ -105,15 +105,21 @@ public class Checker
 										Main.INSTANCE.getLogger( ).error( "No entry for " + restart + "in restartmap" );
 								}
 								
-								Thread.sleep( 6000 );
+								Main.INSTANCE.getUtils( ).sleep( 6000 );
 							}
 						}
 						
-						Thread.sleep( 1000 );
+						Main.INSTANCE.getUtils( ).sleep( 1000 );
 					}
 					catch( Exception e )
 					{
+						try
+						{
+							Main.INSTANCE.getUtils( ).sleep( 1000 );
+						}
+						catch( Exception e2 ) {}
 						
+						e.printStackTrace( );
 					}
 				}
 			}
@@ -195,10 +201,11 @@ public class Checker
 	
 	public void updateRestartState( String str )
 	{
-		if( this.restartstate.equals( str ) ) return;
-		
+		if( ( this.restartstate == null && str != null ) ||
+			( this.restartstate != null && str != null && !this.restartstate.equals( str ) ) )
+			Main.INSTANCE.getUtils( ).printToChat( str );
+
 		this.restartstate = str;
-		Main.INSTANCE.getUtils( ).printToChat( str );
 	}
 	
 	public String getRestartState( )
