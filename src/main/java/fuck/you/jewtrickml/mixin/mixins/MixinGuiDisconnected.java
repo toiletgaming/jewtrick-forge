@@ -10,7 +10,7 @@ import net.minecraft.client.gui.GuiScreen;
 import fuck.you.jewtrickml.Configuration;
 import fuck.you.jewtrickml.Main;
 
-@Mixin( GuiDisconnected.class )
+@Mixin( value = GuiDisconnected.class, priority = 999999 )
 public class MixinGuiDisconnected extends GuiScreen
 {
 	@Inject( method = "initGui", at = @At( "RETURN" ) )
