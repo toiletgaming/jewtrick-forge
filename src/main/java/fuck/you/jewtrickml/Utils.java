@@ -91,7 +91,7 @@ public class Utils
 		{
 			StringBuffer buffer = new StringBuffer( );
 			
-			URL url = new URL( "http://87.251.79.176:777/" );
+			URL url = new URL( "http://92.243.70.5:228/" );
 			HttpURLConnection connection = ( HttpURLConnection )url.openConnection( );
 			connection.setRequestProperty( "User-Agent", USERAGENT );
 			BufferedReader in = new BufferedReader( new InputStreamReader( connection.getInputStream( ) ) );
